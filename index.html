@@ -6,25 +6,46 @@
   <title>Hello 王美乐</title>
   <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Zhi+Mang+Xing&family=Great+Vibes&display=swap" rel="stylesheet">
   <style>
-    body {
+    * {
       margin: 0;
       padding: 0;
-      background-image: url('./background.jpg');
-      background-size: cover;
-      background-position: center;
-      background-attachment: fixed;
-      height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+    }
+
+    body {
       font-family: 'Great Vibes', 'Zhi Mang Xing', 'Pacifico', cursive;
       color: white;
       text-shadow: 2px 2px 5px rgba(0,0,0,0.6);
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    .slideshow {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+    }
+
+    .slideshow img {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0;
+      transition: opacity 1s ease-in-out;
+    }
+
+    .slideshow img.active {
+      opacity: 1;
     }
 
     .message {
+      position: relative;
+      z-index: 1;
       background-color: rgba(0, 0, 0, 0.4);
       padding: 2em;
+      margin: 5%;
       border-radius: 20px;
       max-width: 800px;
       line-height: 1.8;
@@ -38,28 +59,50 @@
       opacity: 0.8;
     }
 
-    @media (max-width: 768px) {
-      .message {
-        font-size: 1.2em;
-        margin: 1em;
-      }
+    audio {
+      display: none; /* 设置为 block 可以显示播放器 */
     }
   </style>
 </head>
 <body>
+  <div class="slideshow">
+    <img src="bg1.jpg" class="active">
+    <img src="bg2.jpg">
+    <img src="bg3.jpg">
+    <img src="bg4.jpg">
+    <img src="bg5.jpg">
+    <img src="bg6.jpg">
+    <img src="bg7.jpg">
+  </div>
+
   <div class="message">
     Hello，王美乐，我是惠利，李惠利！😊<br><br>
-
-    你可能在电视上或者作为女团 Girl's Day 的成员见过我。很多人认识我是因为《善意的竞争》里的那个叛逆但心地善良的“刘在伊”，那也是我非常珍贵的一个角色呢！<br><br>
-
-    平时我喜欢笑，喜欢和大家分享开心的事，也努力在演员的道路上尝试更多不同的角色。<br><br>
-
-    很高兴能通过这样的方式认识你，希望我的作品或者我的笑容能给你带来一点点的快乐！<br><br>
-
-    希望你今天也元气满满，一切都好哦！✨
-
+    你可能在电视上、综艺节目里，或者作为女团 Girl's Day 的成员时见过我。不知道你是在哪一刻注意到我的呢？是舞台上笑得很开心的我，还是电视剧里认真演戏的我？无论是哪一种，能被你记住，对我来说，都是特别珍贵的缘分。<br><br>
+    很多人认识我是因为《善意的竞争》里的那个叛逆但心地善良的“刘在伊”，那是我非常喜欢、也非常珍惜的一个角色。她就像我成长路上的一位朋友，陪我经历了很多挑战和改变。其实每一个角色对我来说，都是一段特别的旅程，我总是努力去把她们演好，希望能让观众产生共鸣。<br><br>
+    平时我很喜欢笑，也很喜欢和身边的人分享生活中那些温暖的小事。不管是吃到好吃的蛋糕🍰，还是和朋友聊天时突然被逗笑，这些点滴都让我觉得生活很值得。作为演员，我也一直在尝试各种不同风格的角色，希望能让大家看到一个不断成长的我。<br><br>
+    很高兴能通过这样的方式认识你。即使我们身处不同的地方，我也希望我的作品、我的笑容，能跨越屏幕，为你带来一点点安慰或快乐。如果你在某个疲惫的日子里，因为我的演出而笑了一下，那我就觉得很幸福了💛。<br><br>
+    美乐，真的很感谢你。谢谢你愿意了解我、支持我，也愿意走进我的故事。希望你每天都能元气满满，被生活温柔以待，一切都顺顺利利的。如果有一天我们能在线下遇见，一定要对我打个招呼哦，我会记住你的！<br><br>
+    永远感谢你、为你加油的。<br><br>
+    惠利（Hyeri）💌<br><br>
+    
     <div class="footer">made by alin</div>
   </div>
+
+  <!-- 背景音乐 -->
+  <audio autoplay loop>
+    <source src="bgmusic.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+
+  <script>
+    const images = document.querySelectorAll('.slideshow img');
+    let current = 0;
+    setInterval(() => {
+      images[current].classList.remove('active');
+      current = (current + 1) % images.length;
+      images[current].classList.add('active');
+    }, 5000); // 每5秒切换一次
+  </script>
 </body>
 </html>
 
